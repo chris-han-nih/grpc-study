@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package account;
+
+option go_package = "github.com/chris-han-nih/account";
+
+import "google/protobuf/timestamp.proto";
+
+service AccountService {
+    rpc GetAccount (GetAccountRequest) returns (GetAccountResponse) {}
+    rpc CreateAccount (CreateAccountRequest) returns (CreateAccountResponse) {}
+}
+
+message GetAccountRequest {
+    int64 id = 1;
+}
+
+message GetAccountResponse {
+    Account account = 1;
+}
+
+message Account {
+    int64 id = 1;
+    string name = 2;
+    string email = 3;
+    string password = 4;
+    string phone = 5;
+    Address address = 6;
+    string avatar = 7;
+    google.protobuf.Timestamp created_at = 8;
+    google.protobuf.Timestamp updated_at = 9;
+}
+
+message CreateAccountRequest {
+    string name = 1;
+    string email = 2;
+    string password = 3;
+    string phone = 4;
+    Address address = 5;
+    string avatar = 6;
+}
+
+message CreateAccountResponse {
+    int64 id = 1;
+}
+
+message Address {
+    string street = 1;
+    string city = 2;
+    string state = 3;
+    string zip = 4;
+}
