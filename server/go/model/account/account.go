@@ -12,7 +12,7 @@ type Server struct {
 func (s *Server) GetAccount(ctx context.Context, in *GetAccountRequest) (*GetAccountResponse, error) {
 	return &GetAccountResponse{
 		Account: &Account{
-			Id:        1,
+			Id:        in.Id,
 			Name:      "Chris",
 			Email:     "namilhan@gmail.com",
 			Phone:     "010-1234-5678",
