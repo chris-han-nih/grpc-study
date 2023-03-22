@@ -24,7 +24,7 @@ func runServer() error {
 		return fmt.Errorf("failed to listen: %v", err)
 	}
 	log.Printf("server listening at %v", lis.Addr())
-	s := grpc.NewServer()
+	s := grpc.NewServer(grpc.UnaryInterceptor(orderUnaryServerInterceptor))
 	account.RegisterAccountServiceServer(s, &account.Server{})
 	if err = s.Serve(lis); err != nil {
 		return fmt.Errorf("failed to server: %v", err)
